@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 class User(BaseModel):
     name: str
@@ -7,7 +8,8 @@ class User(BaseModel):
     password: str
     lattitude: float
     longitude: float
-    created_at: str
+    created_at: datetime 
+
 
 class Supplier(BaseModel):
     name: str
@@ -16,7 +18,7 @@ class Supplier(BaseModel):
     password: str
     lattitude: float
     longitude: float
-    created_at: str
+    created_at: datetime
 
 class Product(BaseModel):
     name: str
