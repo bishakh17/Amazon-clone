@@ -1,1 +1,1 @@
-# Insta-clone
+# Amazon-clone
