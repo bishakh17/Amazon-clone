@@ -1,15 +1,19 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from datetime import datetime
 
-class User(BaseModel):
-    name: str
-    phone: str 
-    email: str
+class UserCreate(BaseModel):
+    email: EmailStr
     password: str
-    lattitude: float
-    longitude: float
-    created_at: datetime 
 
+class User(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+    created_at: datetime
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
 class Supplier(BaseModel):
     name: str

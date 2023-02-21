@@ -1,17 +1,17 @@
 import sqlalchemy as sql
 from database import Base
-
+from datetime import datetime
 
 class User(Base):
     __tablename__ = "users"
     id = sql.Column(sql.Integer, primary_key=True, index=True)
     name = sql.Column(sql.String(50), nullable=False)
-    phone = sql.Column(sql.String(50), nullable=False)
+    phone = sql.Column(sql.String(50), nullable=True)
     email = sql.Column(sql.String(50), unique=True, index=True , nullable=False)
-    password = sql.Column(sql.String(50), nullable=False)
-    lattitude = sql.Column(sql.Double, nullable=False)
-    longitude = sql.Column(sql.Double, nullable=False)
-    created_at = sql.Column(sql.DateTime, nullable=False)
+    hashed_password = sql.Column(sql.String(50), nullable=False)
+    lattitude = sql.Column(sql.Double, nullable=True)
+    longitude = sql.Column(sql.Double, nullable=True)
+    created_at = sql.Column(sql.DateTime, nullable=False, default=datetime.utcnow)
     
     def __repr__(self):
         return f"User(id={self.id}, name={self.name}, phone = {self.phone}, email={self.email}, password={self.password}, lattitude={self.lattitude}, longitude={self.longitude}, created_at={self.created_at})"
@@ -22,10 +22,10 @@ class Supplier(Base):
     name = sql.Column(sql.String(50), nullable=False)
     phone = sql.Column(sql.String(50), nullable=False)
     email = sql.Column(sql.String(50), unique=True, index=True , nullable=False)
-    password = sql.Column(sql.String(50), nullable=False)
+    hashed_password = sql.Column(sql.String(50), nullable=False)
     lattitude = sql.Column(sql.Double, nullable=False)
     longitude = sql.Column(sql.Double, nullable=False)
-    created_at = sql.Column(sql.DateTime, nullable=False)
+    created_at = sql.Column(sql.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
         return f"Supplier(id={self.id}, name={self.name}, phone={self.phone}, email={self.email}, password={self.password}, lattitude={self.lattitude}, longitude={self.longitude}, created_at={self.created_at})"
