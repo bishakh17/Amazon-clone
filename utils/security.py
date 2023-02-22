@@ -12,12 +12,12 @@ SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
 
 def get_hashed_password(password,pwd_context=pwd_context):
-    # return pwd_context.hash(password)
-    return password
+    return pwd_context.hash(password)
+    # return password
 
 def verify_password(plain_password, hashed_password, pwd_context=pwd_context):
-    # return pwd_context.verify(plain_password, hashed_password)
-    return plain_password == hashed_password
+    return pwd_context.verify(plain_password, hashed_password)
+    # return plain_password == hashed_password
 
 def create_access_token(user: models.User, expires_delta: Optional[timedelta] = None):
     user_schema_obj = schemas.User.from_orm(user)

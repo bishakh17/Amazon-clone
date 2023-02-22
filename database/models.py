@@ -22,7 +22,7 @@ class Supplier(Base):
     name = Column(String(50), nullable=False)
     phone = Column(String(50), nullable=False)
     email = Column(String(50), unique=True, index=True , nullable=False)
-    hashed_password = Column(String(50), nullable=False)
+    hashed_password = Column(String, nullable=False)
     lattitude = Column(Double, nullable=False)
     longitude = Column(Double, nullable=False)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
@@ -35,7 +35,7 @@ class Product(Base):
     __tablename__ = "products"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50), nullable=False)
-    description = Column(String(50), nullable=False)
+    description = Column(String(256), nullable=False)
 
     def __repr__(self):
         return f"Product(id={self.id}, name={self.name}, description={self.description})"
