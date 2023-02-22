@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Double
 from datetime import datetime
-from database.database import Base
+from database import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -8,7 +8,7 @@ class User(Base):
     name = Column(String(50), nullable=False)
     phone = Column(String(50), default=None)
     email = Column(String(50), unique=True, index=True , nullable=False)
-    hashed_password = Column(String, nullable=False)
+    hashed_password = Column(String(512), nullable=False)
     lattitude = Column(Double, default=None)
     longitude = Column(Double, default=None)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
@@ -22,7 +22,7 @@ class Supplier(Base):
     name = Column(String(50), nullable=False)
     phone = Column(String(50), nullable=False)
     email = Column(String(50), unique=True, index=True , nullable=False)
-    hashed_password = Column(String, nullable=False)
+    hashed_password = Column(String(512), nullable=False)
     lattitude = Column(Double, nullable=False)
     longitude = Column(Double, nullable=False)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
