@@ -1,10 +1,12 @@
-import sqlalchemy as sql
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
 SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:5503@localhost:3306/ecommerce"
-engine = sql.create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-SessionLocal = sql.orm.sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = sql.ext.declarative.declarative_base()
+Base = declarative_base()
 
 

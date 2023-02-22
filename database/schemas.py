@@ -9,7 +9,8 @@ class User(BaseModel):
     id: int
     name: str
     email: EmailStr
-    created_at: datetime
+    class Config:
+        orm_mode = True
 
 class Token(BaseModel):
     access_token: str

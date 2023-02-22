@@ -1,4 +1,5 @@
 import mysql.connector
+import models, database
 
 db = mysql.connector.connect(
     host="localhost",
@@ -8,3 +9,5 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 cursor.execute("CREATE DATABASE ecommerce")
+
+models.Base.metadata.create_all(bind=database.engine)
