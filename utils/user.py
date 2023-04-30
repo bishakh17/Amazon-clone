@@ -1,6 +1,6 @@
 from database import models, schemas
 from sqlalchemy.orm import Session
-from utils.security import get_hashed_password, verify_password, manager
+from utils.security import get_hashed_password, verify_password, create_access_token, decode_access_token
 
 def get_user_by_email(email: str, db: Session):
     return db.query(models.User).filter(models.User.email == email).first()
@@ -27,8 +27,7 @@ def create_new_user(user: schemas.UserCreate, db : Session):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    access_token = manager.create_access_token(data={"id": new_user.id})
-    return {"access_token": access_token, "token_type": "bearer"}
+    return create_access_token(new_user)
     
 
 
@@ -38,9 +37,7 @@ def authenticate_user(email: str, password: str, db: Session):
         return False
     if not verify_password(password, user.hashed_password):
         return False
-    # access_token = manager.create_access_token(data={"id": user.id})
-    # return {"access_token": access_token, "token_type": "bearer"}
-    return user
+    return create_access_token(user)
 
 def get_user_orders(token: str, db: Session):
     user = get_current_user(token, db)
